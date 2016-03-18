@@ -1,0 +1,19 @@
+{
+    "name": "7rin0/phpqs",
+    "description": "PHP Quality & Security Analiser",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luis SEVERINO",
+            "email": "lfs.severino@gmail.com"
+        }
+    ],
+    "require": {
+        "phploc/phploc": "^3.0",
+        "pdepend/pdepend": "^2.2",
+        "phpmd/phpmd": "^2.4",
+        "sebastian/phpcpd": "^2.0",
+        "squizlabs/php_codesniffer": "^2.5",
+        "sebastian/phpdcd": "^1.0"
+    }
+}
