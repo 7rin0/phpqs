@@ -17,3 +17,48 @@ then
 	sudo composer install
 	sudo chown -R $(whoami) vendor
 fi
+
+# Functions
+pdepend()
+{
+	./vendor/bin/pdepend
+}
+
+phpcbf()
+{
+	./vendor/bin/phpcbf
+}
+
+phpcpd()
+{
+	./vendor/bin/phpcpd
+}
+
+phpcs()
+{
+	./vendor/bin/phpcs
+}
+
+phpdcd()
+{
+	./vendor/bin/phpdcd
+}
+
+phploc()
+{
+	./vendor/bin/phploc
+}
+
+phpmd()
+{
+	./vendor/bin/phpmd
+}
+
+# Then if no command
+pdepend
+phpcbf
+phpcpd
+phpcs
+phpdcd
+phploc
+phpmd
