@@ -14,6 +14,7 @@ While the main script is being developed you can expect long reports output in t
 - generate a report for each execution and organized by analyser
 - allow to call isolated analyser
 - evaluate missing tests, scans types and add new features
+- add description to usage of each applications
 
 ## Inside
 First of all this "combinator" off security and quality tests/analisers it is 100% fuelled by the following great applications:
