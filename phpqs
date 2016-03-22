@@ -21,44 +21,49 @@ fi
 # Functions
 pdepend()
 {
-	./vendor/bin/pdepend
+	./vendor/bin/pdepend $1
 }
 
 phpcbf()
 {
-	./vendor/bin/phpcbf
+	./vendor/bin/phpcbf $1
 }
 
 phpcpd()
 {
-	./vendor/bin/phpcpd
+	./vendor/bin/phpcpd $1
 }
 
 phpcs()
 {
-	./vendor/bin/phpcs
+	./vendor/bin/phpcs $1
 }
 
 phpdcd()
 {
-	./vendor/bin/phpdcd
+	./vendor/bin/phpdcd $1
 }
 
 phploc()
 {
-	./vendor/bin/phploc
+	./vendor/bin/phploc $1
 }
 
 phpmd()
 {
-	./vendor/bin/phpmd
+	./vendor/bin/phpmd $1
 }
 
-# Then if no command
-pdepend
-phpcbf
-phpcpd
-phpcs
-phpdcd
-phploc
-phpmd
+# If project directory exists run all analysers
+if [ -d $1 ]
+then
+	pdepend $1
+	phpcbf $1
+	phpcpd $1
+	phpcs $1
+	phpdcd $1
+	phploc $1
+	phpmd $1
+else
+	echo The project\'s path \"$1\" doesn\'t exist
+fi
