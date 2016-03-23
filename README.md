@@ -11,8 +11,8 @@ While the main script is being developed you can expect long reports output in t
 - ./phpqs your/relative/or/absolute/project/path
 
 ## Todo
-- allow to call isolated analyser
-- evaluate missing tests, scans types and add new features
+- call and isolate one choosen application itself (ex: phpqs pdepend my/projects/path)
+- check, add or remove tests
 
 ## Inside
 This script combines security and quality 100% fuelled by the following great applications:
