@@ -15,7 +15,7 @@ While the main script is being developed you can expect long reports output in t
 - evaluate missing tests, scans types and add new features
 
 ## Inside
-First of all this "combinator" off security and quality tests/analysers it is 100% fuelled by the following great applications:
+This script combines security and quality 100% fuelled by the following great applications:
 - [pdepend](https://github.com/pdepend/pdepend) *"... shows you the quality of your design in the terms of extensibility, reusability and maintainability ..."*
 - [phpmd](https://github.com/phpmd/phpmd)  *"It takes a given PHP source code base and look for several potential problems within that source ..."*
 - [phpcbf, phpcs](https://github.com/squizlabs/PHP_CodeSniffer)  *"PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards."*
