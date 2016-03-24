@@ -49,19 +49,29 @@ phpcs()
 	./vendor/bin/phpcs $1 --report=full --report-file=$path/phpcs.xml
 }
 
-phpcbf()
-{
-	./vendor/bin/phpcbf $1
-}
-
 phpcpd()
 {
-	./vendor/bin/phpcpd $1
+	# Create a pdepend report directory
+	path="$rdir/phpcpd"
+	mkdir -p $path
+
+	# Execute scan and output reports
+	./vendor/bin/phpcpd $1 > $path/phpcpd.txt
 }
 
 phpdcd()
 {
+	# Create a pdepend report directory
+	path="$rdir/phpdcd"
+	mkdir -p $path
+
+	# Execute scan and output reports
 	./vendor/bin/phpdcd $1
+}
+
+phpcbf()
+{
+	./vendor/bin/phpcbf $1
 }
 
 phploc()
@@ -80,9 +90,9 @@ then
 	pdepend $1 $rdir
 	phpmd $1 $rdir
 	phpcs $1 $rdir
+	phpcpd $1 $rdir
+	phpdcd $1 $rdir
 #	phpcbf $1$rdir
-#	phpcpd $1 $rdir
-#	phpdcd $1 $rdir
 #	phploc $1 $rdir
 else
 	echo The project\'s path \"$1\" doesn\'t exist
