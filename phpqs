@@ -21,7 +21,7 @@ fi
 # Functions
 pdepend()
 {
-	./vendor/bin/pdepend $1
+	./vendor/bin/pdepend --summary-xml=$rdir/summary.xml --jdepend-chart=$rdir/jdepend.svg --overview-pyramid=$rdir/pyramid.svg $1
 }
 
 phpcbf()
@@ -57,13 +57,18 @@ phpmd()
 # If project directory exists run all analysers
 if [ -d $1 ]
 then
-	pdepend $1
-	phpcbf $1
-	phpcpd $1
-	phpcs $1
-	phpdcd $1
-	phploc $1
-	phpmd $1
+	# Report directory
+	rdir=reports/$(date +%d%m%Y-%H%M%S)
+	mkdir -p $rdir
+
+	# Functions
+	pdepend $1 $rdir
+#	phpcbf $1 $rdir
+#	phpcpd $1 $rdir
+#	phpcs $1 $rdir
+#	phpdcd $1 $rdir
+#	phploc $1 $rdir
+#	phpmd $1 $rdir
 else
 	echo The project\'s path \"$1\" doesn\'t exist
 fi
