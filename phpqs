@@ -22,10 +22,21 @@ fi
 pdepend()
 {
 	# Create a pdepend report directory
-	rdir="$rdir/pdepend"
-	mkdir -p $rdir
+	path="$rdir/pdepend"
+	mkdir -p $path
 
-	./vendor/bin/pdepend --summary-xml=$rdir/summary.xml --jdepend-chart=$rdir/jdepend.svg --overview-pyramid=$rdir/pyramid.svg $1
+	# Execute scan and output reports
+	./vendor/bin/pdepend --summary-xml=$path/summary.xml --jdepend-chart=$path/jdepend.svg --overview-pyramid=$path/pyramid.svg $1
+}
+
+phpmd()
+{
+	# Create a pdepend report directory
+	path="$rdir/phpmd"
+	mkdir -p $path
+
+	# Execute scan and output reports
+	./vendor/bin/phpmd $1 html cleancode,codesize,controversial,design,naming,unusedcode --reportfile $path/phpmd.html --suffixes php,phtml
 }
 
 phpcbf()
@@ -53,11 +64,6 @@ phploc()
 	./vendor/bin/phploc $1
 }
 
-phpmd()
-{
-	./vendor/bin/phpmd $1
-}
-
 # If project directory exists run all analysers
 if [ -d $1 ]
 then
@@ -66,13 +72,13 @@ then
 	mkdir -p $rdir
 
 	# Functions
-	pdepend $1 "$rdir/pdpend"
+	pdepend $1 $rdir
+	phpmd $1 $rdir
 #	phpcbf $1 $rdir
 #	phpcpd $1 $rdir
 #	phpcs $1 $rdir
 #	phpdcd $1 $rdir
 #	phploc $1 $rdir
-#	phpmd $1 $rdir
 else
 	echo The project\'s path \"$1\" doesn\'t exist
 fi
