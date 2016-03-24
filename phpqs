@@ -21,6 +21,10 @@ fi
 # Functions
 pdepend()
 {
+	# Create a pdepend report directory
+	rdir="$rdir/pdepend"
+	mkdir -p $rdir
+
 	./vendor/bin/pdepend --summary-xml=$rdir/summary.xml --jdepend-chart=$rdir/jdepend.svg --overview-pyramid=$rdir/pyramid.svg $1
 }
 
@@ -62,7 +66,7 @@ then
 	mkdir -p $rdir
 
 	# Functions
-	pdepend $1 $rdir
+	pdepend $1 "$rdir/pdpend"
 #	phpcbf $1 $rdir
 #	phpcpd $1 $rdir
 #	phpcs $1 $rdir
