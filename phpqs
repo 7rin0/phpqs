@@ -69,14 +69,19 @@ phpdcd()
 	./vendor/bin/phpdcd $1
 }
 
+phploc()
+{
+	# Create a pdepend report directory
+	path="$rdir/phploc"
+	mkdir -p $path
+
+	# Execute scan and output reports
+	./vendor/bin/phploc --log-csv $path/phploc.csv --progress -q > $path/phploc.txt $1
+}
+
 phpcbf()
 {
 	./vendor/bin/phpcbf $1
-}
-
-phploc()
-{
-	./vendor/bin/phploc $1
 }
 
 # If project directory exists run all analysers
@@ -92,8 +97,8 @@ then
 	phpcs $1 $rdir
 	phpcpd $1 $rdir
 	phpdcd $1 $rdir
+	phploc $1 $rdir
 #	phpcbf $1$rdir
-#	phploc $1 $rdir
 else
 	echo The project\'s path \"$1\" doesn\'t exist
 fi
