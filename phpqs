@@ -39,6 +39,16 @@ phpmd()
 	./vendor/bin/phpmd $1 html cleancode,codesize,controversial,design,naming,unusedcode --reportfile $path/phpmd.html --suffixes php,phtml
 }
 
+phpcs()
+{
+	# Create a pdepend report directory
+	path="$rdir/phpcs"
+	mkdir -p $path
+
+	# Execute scan and output reports
+	./vendor/bin/phpcs $1 --report=full --report-file=$path/phpcs.xml
+}
+
 phpcbf()
 {
 	./vendor/bin/phpcbf $1
@@ -47,11 +57,6 @@ phpcbf()
 phpcpd()
 {
 	./vendor/bin/phpcpd $1
-}
-
-phpcs()
-{
-	./vendor/bin/phpcs $1
 }
 
 phpdcd()
@@ -74,9 +79,9 @@ then
 	# Functions
 	pdepend $1 $rdir
 	phpmd $1 $rdir
-#	phpcbf $1 $rdir
+	phpcs $1 $rdir
+#	phpcbf $1$rdir
 #	phpcpd $1 $rdir
-#	phpcs $1 $rdir
 #	phpdcd $1 $rdir
 #	phploc $1 $rdir
 else
