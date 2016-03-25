@@ -13,6 +13,8 @@ While the main script is being developed you can expect long reports output in t
 ## Todo
 - call and isolate one choosen application itself (ex: phpqs pdepend my/projects/path)
 - check, add or remove tests
+- Add phpmetrics
+- Merge Reports into a new html page
 
 ## Inside
 This script combines security and quality 100% fuelled by the following great applications:
