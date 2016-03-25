@@ -14,6 +14,7 @@ While the main script is being developed you can expect long reports output in t
 - call and isolate one choosen application itself (ex: phpqs pdepend my/projects/path)
 - check, add or remove tests
 - Add phpmetrics
+- Add SensioLabs Security Checker
 - Merge Reports into a new html page
 
 ## Inside
