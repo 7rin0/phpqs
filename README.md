@@ -15,6 +15,7 @@ While the main script is being developed you can expect long reports output in t
 - check, add or remove tests
 - Add phpmetrics
 - Add SensioLabs Security Checker
+- Add OWASP_Code_Review_Project
 - Merge Reports into a new html page
 
 ## Inside
