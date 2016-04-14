@@ -88,7 +88,7 @@ phpcbf()
 if [ -d $1 ]
 then
 	# Report directory
-	rdir=reports/$(date +%d%m%Y-%H%M%S)
+	rdir=reports/$(date +%Y-%m-%d_%H%M%S)
 	mkdir -p $rdir
 
 	# Functions
