@@ -11,13 +11,11 @@ var http = require('http'),
 // Define app as express app
 var app = express();
 
-app.use('/', sIndex(__dirname + '/reports'));
+// Get static files from reports
+app.use(express.static(__dirname + '/reports'));
 
-// Reports root
-// app.get('/', function rootMiddleware(req, res, next) {
-//   // res.send('Hello World!');
-//   express.bodyParser();
-// });
+// Allow navigate throw reports directories
+app.use('/', sIndex(__dirname + '/reports'));
 
 // Define port to listen to
 app.listen(3550, function() {
