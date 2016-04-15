@@ -3,3 +3,4 @@ phpcbf-fixed.diff
 vendor
 seven-manager-bundle
 reports
+node_modules
