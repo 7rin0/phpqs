@@ -19,64 +19,43 @@ fi
 # Functions
 pdepend()
 {
-	# Create a pdepend report directory
-	mkdir -p $rdir
-
 	# Execute scan and output reports
 	./vendor/bin/pdepend --summary-xml=$rdir/pdepend.xml $1
 }
 
 phpmd()
 {
-	# Create a pdepend report directory
-	mkdir -p $rdir
-
 	# Execute scan and output reports
 	./vendor/bin/phpmd $1 xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile $rdir/phpmd.xml --suffixes php,phtml
 }
 
 phpcs()
 {
-	# Create a pdepend report directory
-	mkdir -p $rdir
-
 	# Execute scan and output reports
 	./vendor/bin/phpcs $1 --report=xml --report-file=$rdir/phpcs.xml
 }
 
 phpcpd()
 {
-	# Create a pdepend report directory
-	path="$rdir/phpcpd"
-	mkdir -p $path
-
 	# Execute scan and output reports
-	./vendor/bin/phpcpd $1 > $path/phpcpd.txt
+	./vendor/bin/phpcpd $1  > $rdir/phpcpd.txt
 }
 
 phpdcd()
 {
-	# Create a pdepend report directory
-	path="$rdir/phpdcd"
-	mkdir -p $path
-
 	# Execute scan and output reports
-	./vendor/bin/phpdcd $1
+	./vendor/bin/phpdcd $1 > $rdir/phpdcd.txt
 }
 
 phploc()
 {
-	# Create a pdepend report directory
-	path="$rdir/phploc"
-	mkdir -p $path
-
 	# Execute scan and output reports
-	./vendor/bin/phploc --log-csv $path/phploc.csv --progress -q > $path/phploc.txt $1
+	./vendor/bin/phploc --log-csv $rdir/phploc.csv --progress -q
 }
 
 phpcbf()
 {
-	./vendor/bin/phpcbf $1
+	./vendor/bin/phpcbf $1 > $rdir/phpcbf.txt
 }
 
 # If project directory exists run all analysers
