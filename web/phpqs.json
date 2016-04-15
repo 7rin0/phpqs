@@ -1,0 +1,55 @@
+{
+    "name": "phpqs",
+    "children": [{
+      "name": "pdepend",
+      "size" : 1,
+      "children": [{
+          "name": "Data 1",
+          "size": 1
+        }, {
+          "name": "Data 2",
+          "size": 2
+          }]
+      },{
+      "name": "phpmd",
+      "size" : 2,
+      "children": [{
+          "name": "Data 1",
+          "size": 1
+        }, {
+          "name": "Data 2",
+          "size": 2
+          }]
+      },{
+      "name": "phpcs",
+      "size" : 3,
+      "children": [{
+          "name": "Data 1",
+          "size": 1
+        }, {
+          "name": "Data 2",
+          "size": 2
+          }]
+      },{
+      "name": "phpcpd",
+      "size" : 4,
+      "children": [{
+          "name": "Data 1",
+          "size": 1
+        }, {
+          "name": "Data 2",
+          "size": 2
+          }]
+      },{
+      "name": "phploc",
+      "size" : 5,
+      "children": [{
+          "name": "Data 1",
+          "size": 1
+        }, {
+          "name": "Data 2",
+          "size": 2
+          }]
+      }
+    ]
+}
