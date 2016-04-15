@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Generic vars
-
 # Check if packages where installed
 if [ ! -d vendor/bin ]
 then
@@ -22,31 +20,28 @@ fi
 pdepend()
 {
 	# Create a pdepend report directory
-	path="$rdir/pdepend"
-	mkdir -p $path
+	mkdir -p $rdir
 
 	# Execute scan and output reports
-	./vendor/bin/pdepend --summary-xml=$path/summary.xml --jdepend-chart=$path/jdepend.svg --overview-pyramid=$path/pyramid.svg $1
+	./vendor/bin/pdepend --summary-xml=$rdir/pdepend.xml $1
 }
 
 phpmd()
 {
 	# Create a pdepend report directory
-	path="$rdir/phpmd"
-	mkdir -p $path
+	mkdir -p $rdir
 
 	# Execute scan and output reports
-	./vendor/bin/phpmd $1 html cleancode,codesize,controversial,design,naming,unusedcode --reportfile $path/phpmd.html --suffixes php,phtml
+	./vendor/bin/phpmd $1 xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile $rdir/phpmd.xml --suffixes php,phtml
 }
 
 phpcs()
 {
 	# Create a pdepend report directory
-	path="$rdir/phpcs"
-	mkdir -p $path
+	mkdir -p $rdir
 
 	# Execute scan and output reports
-	./vendor/bin/phpcs $1 --report=full --report-file=$path/phpcs.xml
+	./vendor/bin/phpcs $1 --report=xml --report-file=$rdir/phpcs.xml
 }
 
 phpcpd()

@@ -8,7 +8,7 @@ PHP Quality & Security Analyser
 ## Usage
 While the main script is being developed you can expect long reports output in terminal. Easy as clone this repository and run phpqs script with your projects path as argument:
 - git clone https://github.com/7rin0/phpqs.git
-- ./phpqs your/relative/or/absolute/project/path
+- ./phpqs project/directory
 
 ## Todo
 - call and isolate one choosen application itself (ex: phpqs pdepend my/projects/path)
