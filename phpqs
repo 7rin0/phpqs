@@ -50,7 +50,7 @@ phpdcd()
 phploc()
 {
 	# Execute scan and output reports
-	./vendor/bin/phploc --log-csv $rdir/phploc.csv --progress -q
+	./vendor/bin/phploc --log-xml=$rdir/phploc.xml $1
 }
 
 phpcbf()
