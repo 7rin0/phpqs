@@ -14,7 +14,11 @@
   },
   "homepage": "https://github.com/7rin0/phpqs#readme",
   "dependencies": {
+    "body-parser": "^1.15.0",
+    "ejs": "^2.4.1",
     "express": "^4.13.4",
+    "http": "0.0.0",
+    "mysql": "^2.10.2",
     "pug": "^2.0.0-alpha3",
     "socket.io": "^1.4.5"
   },
