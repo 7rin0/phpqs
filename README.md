@@ -14,13 +14,13 @@ npm install
 ./phpqs path/to/yout/php/project
 ```
 
-## Some details
-After clone this project if you execute directly the script without install composer or node dependencies before the installation should be done automatically.
-
 ## Options
+
+#### Some details
+After clone this project if you execute directly the script ``` ./phpqs ``` without properly install the project his dependencies should be installed automatically.
+
 #### View reports through http server:
 ``` make sreports ```
-
 
 #### Check your project using one specific applications:
 ``` ./bin/{pdepend|phpcbf|phpcpd|phpcs|phpdcd|phploc|phpmd} {options} {arguments} ```
@@ -28,7 +28,7 @@ After clone this project if you execute directly the script without install comp
 i.e: ``` ./bin/phpcs path/to/yout/php/project --report=xml --report-file=phpcs-report.xml ```
 
 
-## Todo
+## TODO
 - Add phpmetrics
 - Add SensioLabs Security Checker
 - Add OWASP_Code_Review_Project
