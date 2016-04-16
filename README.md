@@ -17,7 +17,7 @@ npm install
 ## Options
 
 #### Some details
-After clone this project if you execute directly the script without install composer or node dependencies before the installation should be done automatically.
+After clone this project if you execute directly the script ``` ./phpqs ``` without properly install the project his dependencies should be installed automatically.
 
 #### View reports through http server:
 ``` make sreports ```
