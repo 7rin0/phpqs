@@ -19,5 +19,5 @@ app.use('/', sIndex(__dirname + '/reports'));
 
 // Define port to listen to
 app.listen(3550, function() {
-  console.log("I'm listening on "+port+"...");
+  console.log("I'm listening on http://localhost:"+port+"...");
 });
