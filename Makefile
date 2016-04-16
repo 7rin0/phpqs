@@ -1,6 +1,6 @@
 sreports:
 	npm install
-	xdg-open http://localhost:3550
+	nohup  xdg-open http://localhost:3550 >/dev/null 2>&1
 	node index.js
 
 
