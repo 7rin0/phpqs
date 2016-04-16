@@ -5,18 +5,33 @@ PHP Quality & Security Analyser
 - composer
 - php-cli
 
-## Usage
-While the main script is being developed you can expect long reports output in terminal. Easy as clone this repository and run phpqs script with your projects path as argument:
-- git clone https://github.com/7rin0/phpqs.git
-- ./phpqs project/directory
+## Usage (tl;dr)
+```
+git clone https://github.com/7rin0/phpqs.git
+cd phpqs
+composer install
+npm install
+./phpqs path/to/yout/php/project
+```
+
+## Some details
+After clone this project if you execute directly the script without install composer or node dependencies before the installation should be done automatically.
+
+## Options
+#### View reports through http server:
+``` make sreports ```
+
+
+#### Check your project using one specific applications:
+``` ./bin/{pdepend|phpcbf|phpcpd|phpcs|phpdcd|phploc|phpmd} {options} {arguments} ```
+
+i.e: ``` ./bin/phpcs path/to/yout/php/project --report=xml --report-file=phpcs-report.xml ```
+
 
 ## Todo
-- call and isolate one choosen application itself (ex: phpqs pdepend my/projects/path)
-- check, add or remove tests
 - Add phpmetrics
 - Add SensioLabs Security Checker
 - Add OWASP_Code_Review_Project
-- Merge Reports into a new html page
 
 ## Inside
 This script combines security and quality 100% fuelled by the following great applications:
@@ -27,4 +42,3 @@ This script combines security and quality 100% fuelled by the following great ap
 - [phpdcd](https://github.com/sebastianbergmann/phpdcd)  *"It scans a PHP project for all declared functions and methods and reports those as being "dead code" that are not called at least once."*
 - [phploc](https://github.com/sebastianbergmann/phploc)  *"A tool for quickly measuring the size of a PHP project."*
 
-## You are always welcome to enjoy and contribute :)
