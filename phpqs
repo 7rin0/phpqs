@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check if packages where installed
-if [ ! -d vendor/bin ]
+if [ ! -d bin ]
 then
 	# If not check if composer exists
 	if [ ! $(which composer) ]
@@ -20,42 +20,42 @@ fi
 pdepend()
 {
 	# Execute scan and output reports
-	./vendor/bin/pdepend --summary-xml=$rdir/pdepend.xml $1
+	./bin/pdepend --summary-xml=$rdir/pdepend.xml $1
 }
 
 phpmd()
 {
 	# Execute scan and output reports
-	./vendor/bin/phpmd $1 xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile $rdir/phpmd.xml --suffixes php,phtml
+	./bin/phpmd $1 xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile $rdir/phpmd.xml --suffixes php,phtml
 }
 
 phpcs()
 {
 	# Execute scan and output reports
-	./vendor/bin/phpcs $1 --report=xml --report-file=$rdir/phpcs.xml
+	./bin/phpcs $1 --report=xml --report-file=$rdir/phpcs.xml
 }
 
 phpcpd()
 {
 	# Execute scan and output reports
-	./vendor/bin/phpcpd $1  > $rdir/phpcpd.txt
+	./bin/phpcpd $1  > $rdir/phpcpd.txt
 }
 
 phpdcd()
 {
 	# Execute scan and output reports
-	./vendor/bin/phpdcd $1 > $rdir/phpdcd.txt
+	./bin/phpdcd $1 > $rdir/phpdcd.txt
 }
 
 phploc()
 {
 	# Execute scan and output reports
-	./vendor/bin/phploc --log-xml=$rdir/phploc.xml $1
+	./bin/phploc --log-xml=$rdir/phploc.xml $1
 }
 
 phpcbf()
 {
-	./vendor/bin/phpcbf $1 > $rdir/phpcbf.txt
+	./bin/phpcbf $1 > $rdir/phpcbf.txt
 }
 
 # If project directory exists run all analysers
