@@ -31,9 +31,9 @@ i.e: ``` ./bin/phpcs path/to/yout/php/project --report=xml --report-file=phpcs-r
 
 
 ## TODO
-- Add phpmetrics
-- Add SensioLabs Security Checker
-- Add OWASP_Code_Review_Project
+- Update phpqs to run phpmetrics
+- Update phpqs to run Security Checker
+- Implement OWASP_Code_Review_Project
 
 ## Inside
 This script combines security and quality 100% fuelled by the following great applications:
