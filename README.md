@@ -20,7 +20,9 @@ npm install
 After clone this project if you execute directly the script ``` ./phpqs ``` without properly install the project his dependencies should be installed automatically.
 
 #### View reports through http server:
-``` make open-reports ``` or use option "--open" ``` ./phpqs path/to/yout/php/project --open```
+use make command: ``` make open-reports ``` 
+
+or use option "--open": ``` ./phpqs path/to/yout/php/project --open```
 
 #### Check your project using a specific script:
 ``` ./bin/{pdepend|phpcbf|phpcpd|phpcs|phpdcd|phploc|phpmd} {options} {arguments} ```
