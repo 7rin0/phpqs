@@ -22,7 +22,7 @@ After clone this project if you execute directly the script ``` ./phpqs ``` with
 #### View reports through http server:
 ``` make sreports ```
 
-#### Check your project using one specific applications:
+#### Check your project using a specific script:
 ``` ./bin/{pdepend|phpcbf|phpcpd|phpcs|phpdcd|phploc|phpmd} {options} {arguments} ```
 
 i.e: ``` ./bin/phpcs path/to/yout/php/project --report=xml --report-file=phpcs-report.xml ```
@@ -41,4 +41,3 @@ This script combines security and quality 100% fuelled by the following great ap
 - [phpcpd](https://github.com/sebastianbergmann/phpcpd)  *"Copy/Paste Detector (CPD) for PHP code."*
 - [phpdcd](https://github.com/sebastianbergmann/phpdcd)  *"It scans a PHP project for all declared functions and methods and reports those as being "dead code" that are not called at least once."*
 - [phploc](https://github.com/sebastianbergmann/phploc)  *"A tool for quickly measuring the size of a PHP project."*
-

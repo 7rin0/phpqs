@@ -6,18 +6,18 @@ var http = require('http'),
     mysql = require('mysql'),
     ejs = require('ejs'),
     sIndex = require('serve-index'),
-    port = 3550;
+    port = 3550,
+    rootPath = __dirname + '/reports';
 
 // Define app as express app
 var app = express();
 
 // Get static files from reports
-app.use(express.static(__dirname + '/reports'));
-
 // Allow navigate throw reports directories
-app.use('/', sIndex(__dirname + '/reports'));
+var defaultRouteFunctions = [express.static(rootPath), sIndex(rootPath)];
+app.use('/', defaultRouteFunctions);
 
 // Define port to listen to
-app.listen(3550, function() {
+app.listen(port, function() {
   console.log("I'm listening on http://localhost:"+port+"...");
 });
