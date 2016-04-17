@@ -61,7 +61,7 @@ phpdcd()
 phploc()
 {
 	# Execute scan and output reports
-	./bin/phploc --log-xml=$rdir/phploc.xml $1
+	./bin/phploc --log-xml=$rdir/phploc.xml $1 > $rdir/phploc.txt
 }
 
 phpcbf()
