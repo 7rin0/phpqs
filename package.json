@@ -2,7 +2,7 @@
   "name": "phpqs",
   "version": "1.0.0",
   "description": "PHP Quality & Security Analyser",
-  "main": "web/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/7rin0/phpqs.git"
