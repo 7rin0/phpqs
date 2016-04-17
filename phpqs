@@ -1,5 +1,28 @@
 #!/bin/bash
 
+# Defaults
+OPEN=false
+TARGET_PATH=$1
+
+# OPTIONS
+while [[ $# > 0 ]]
+do
+key="$1"
+value="$2"
+case $key in
+	--open)
+	OPEN=true
+	shift
+	;;
+	--default)
+	DEFAULT=YES
+	;;
+	*)
+	;;
+esac
+shift
+done
+
 # Check if composer dependencies are installed
 if [ ! -d bin ]
 then
@@ -16,74 +39,90 @@ then
 	sudo chown -R $(whoami) vendor
 fi
 
-# Check if node dependencies are installed
-if [ ! -d node_modules ]
-then
-	if [ ! $(which npm) ]
-	then
-		echo "Please install npm application to view reports on your browser"
-	else
-		npm install
-	fi
-fi
-
 # Functions
 pdepend()
 {
 	# Execute scan and output reports
-	./bin/pdepend --summary-xml=$rdir/pdepend.xml $1
+	./bin/pdepend --summary-xml=$REPORTS_PATH/pdepend.xml $TARGET_PATH
 }
 
 phpmd()
 {
 	# Execute scan and output reports
-	./bin/phpmd $1 xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile $rdir/phpmd.xml --suffixes php,phtml
+	./bin/phpmd $TARGET_PATH xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile $REPORTS_PATH/phpmd.xml --suffixes php,phtml
 }
 
 phpcs()
 {
 	# Execute scan and output reports
-	./bin/phpcs $1 --report=xml --report-file=$rdir/phpcs.xml
+	./bin/phpcs $TARGET_PATH --report=xml --report-file=$REPORTS_PATH/phpcs.xml
 }
 
 phpcpd()
 {
 	# Execute scan and output reports
-	./bin/phpcpd $1  > $rdir/phpcpd.txt
+	./bin/phpcpd $TARGET_PATH  > $REPORTS_PATH/phpcpd.txt
 }
 
 phpdcd()
 {
 	# Execute scan and output reports
-	./bin/phpdcd $1 > $rdir/phpdcd.txt
+	./bin/phpdcd $TARGET_PATH > $REPORTS_PATH/phpdcd.txt
 }
 
 phploc()
 {
 	# Execute scan and output reports
-	./bin/phploc --log-xml=$rdir/phploc.xml $1 > $rdir/phploc.txt
+	./bin/phploc --log-xml=$REPORTS_PATH/phploc.xml $TARGET_PATH > $REPORTS_PATH/phploc.txt
 }
 
 phpcbf()
 {
-	./bin/phpcbf $1 > $rdir/phpcbf.txt
+	./bin/phpcbf $TARGET_PATH > $REPORTS_PATH/phpcbf.txt
+}
+
+open-reports()
+{
+	if [ $OPEN == true ]
+	then
+		# Check if node dependencies are installed
+		if [ ! -d node_modules ]
+		then
+			if [ ! $(which npm) ]
+			then
+				echo "Please install npm application to view reports on your browser."
+			else
+				npm install
+			fi
+		fi
+		node index.js
+	fi
 }
 
 # If project directory exists run all analysers
-if [ -d $1 ]
+if [ -d "$TARGET_PATH" ]
 then
 	# Report directory
-	rdir=reports/$(date +%Y-%m-%d_%H%M%S)
-	mkdir -p $rdir
+	REPORTS_PATH=reports/$(date +%Y-%m-%d_%H%M%S)
+	mkdir -p $REPORTS_PATH
 
 	# Functions
-	pdepend $1 $rdir
-	phpmd $1 $rdir
-	phpcs $1 $rdir
-	phpcpd $1 $rdir
-	phpdcd $1 $rdir
-	phploc $1 $rdir
-#	phpcbf $1$rdir
-else
-	echo "The project's path " $1 " doesn\'t exist"
+	pdepend $TARGET_PATH $REPORTS_PATH
+	phpmd $TARGET_PATH $REPORTS_PATH
+	phpcs $TARGET_PATH $REPORTS_PATH
+	phpcpd $TARGET_PATH $REPORTS_PATH
+	phpdcd $TARGET_PATH $REPORTS_PATH
+	phploc $TARGET_PATH $REPORTS_PATH
+
+elif [ $OPEN == false ]
+then
+	if [ -z $TARGET_PATH ]
+	then
+		echo "The target path can't be null"
+	else
+		echo "The path "$TARGET_PATH" doesn't exist"
+	fi
 fi
+
+# Open reports if flag is passed
+open-reports $OPEN

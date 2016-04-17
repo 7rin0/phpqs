@@ -20,7 +20,7 @@ npm install
 After clone this project if you execute directly the script ``` ./phpqs ``` without properly install the project his dependencies should be installed automatically.
 
 #### View reports through http server:
-``` make sreports ```
+``` make open-reports ```
 
 #### Check your project using a specific script:
 ``` ./bin/{pdepend|phpcbf|phpcpd|phpcs|phpdcd|phploc|phpmd} {options} {arguments} ```
