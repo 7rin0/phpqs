@@ -4,8 +4,9 @@ PHP Quality & Security Analyser
 ## Requirements
 - composer
 - php-cli
+- node (list reports directories on browser; option --open)
 
-## Usage (tl;dr)
+## Usage (TL;DR)
 ```
 git clone https://github.com/7rin0/phpqs.git
 cd phpqs
@@ -16,15 +17,15 @@ npm install
 
 ## Options
 
-#### Some details
-After clone this project if you execute directly the script ``` ./phpqs ``` without properly install the project his dependencies should be installed automatically.
+#### Dependency detection
+Each time the script ``` ./phpqs ``` is execute it verifies that composer and node dependencies are already installed and if not it is done automatically
 
 #### View reports through http server:
-use make command: ``` make open-reports ``` 
+run: ``` make open-reports ``` 
 
-or use option "--open": ``` ./phpqs path/to/yout/php/project --open```
+run checks with option "--open": ``` ./phpqs path/to/yout/php/project --open```
 
-#### Check your project using a specific script:
+#### Use and explore a solo script only instead the fullstack
 ``` ./bin/{pdepend|phpcbf|phpcpd|phpcs|phpdcd|phploc|phpmd} {options} {arguments} ```
 
 i.e: ``` ./bin/phpcs path/to/yout/php/project --report=xml --report-file=phpcs-report.xml ```
