@@ -1,0 +1,2 @@
+open-reports:
+	./phpqs --open

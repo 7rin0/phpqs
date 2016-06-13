@@ -1,5 +1,7 @@
 .idea
+nohup.out
 phpcbf-fixed.diff
 vendor
-seven-manager-bundle
+bin
+node_modules
 reports

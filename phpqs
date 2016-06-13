@@ -1,12 +1,31 @@
 #!/bin/bash
 
-# Generic vars
+# Defaults
+OPEN=false
+TARGET_PATH=$1
 
-# Check if packages where installed
-if [ ! -d vendor/bin ]
+# OPTIONS
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+	--open)
+	OPEN=true
+	shift
+	;;
+	--default)
+	;;
+	*)
+	;;
+esac
+shift
+done
+
+# Check if composer dependencies are installed
+if [ ! -d bin ]
 then
 	# If not check if composer exists
-	if [ ! $(which composer) ]
+	if [ ! "$(which composer)" ]
 	then
 		php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php
 		php -r "if (hash('SHA384', file_get_contents('composer-setup.php')) === '41e71d86b40f28e771d4bb662b997f79625196afcca95a5abf44391188c695c6c1456e16154c75a211d238cc3bc5cb47') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
@@ -15,90 +34,93 @@ then
 		sudo mv composer.phar /usr/local/bin/composer
 	fi
 	sudo composer install
-	sudo chown -R $(whoami) vendor
+	sudo chown -R "$(whoami)" vendor
 fi
 
 # Functions
 pdepend()
 {
-	# Create a pdepend report directory
-	path="$rdir/pdepend"
-	mkdir -p $path
-
 	# Execute scan and output reports
-	./vendor/bin/pdepend --summary-xml=$path/summary.xml --jdepend-chart=$path/jdepend.svg --overview-pyramid=$path/pyramid.svg $1
+	./bin/pdepend --summary-xml=$REPORTS_PATH/pdepend.xml $TARGET_PATH
 }
 
 phpmd()
 {
-	# Create a pdepend report directory
-	path="$rdir/phpmd"
-	mkdir -p $path
-
 	# Execute scan and output reports
-	./vendor/bin/phpmd $1 html cleancode,codesize,controversial,design,naming,unusedcode --reportfile $path/phpmd.html --suffixes php,phtml
+	./bin/phpmd $TARGET_PATH xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile $REPORTS_PATH/phpmd.xml --suffixes php,phtml
 }
 
 phpcs()
 {
-	# Create a pdepend report directory
-	path="$rdir/phpcs"
-	mkdir -p $path
-
 	# Execute scan and output reports
-	./vendor/bin/phpcs $1 --report=full --report-file=$path/phpcs.xml
+	./bin/phpcs $TARGET_PATH --report=xml --report-file=$REPORTS_PATH/phpcs.xml
 }
 
 phpcpd()
 {
-	# Create a pdepend report directory
-	path="$rdir/phpcpd"
-	mkdir -p $path
-
 	# Execute scan and output reports
-	./vendor/bin/phpcpd $1 > $path/phpcpd.txt
+	./bin/phpcpd $TARGET_PATH  > $REPORTS_PATH/phpcpd.txt
 }
 
 phpdcd()
 {
-	# Create a pdepend report directory
-	path="$rdir/phpdcd"
-	mkdir -p $path
-
 	# Execute scan and output reports
-	./vendor/bin/phpdcd $1
+	./bin/phpdcd $TARGET_PATH > $REPORTS_PATH/phpdcd.txt
 }
 
 phploc()
 {
-	# Create a pdepend report directory
-	path="$rdir/phploc"
-	mkdir -p $path
-
 	# Execute scan and output reports
-	./vendor/bin/phploc --log-csv $path/phploc.csv --progress -q > $path/phploc.txt $1
+	./bin/phploc --log-xml=$REPORTS_PATH/phploc.xml $TARGET_PATH > $REPORTS_PATH/phploc.txt
 }
 
 phpcbf()
 {
-	./vendor/bin/phpcbf $1
+	./bin/phpcbf $TARGET_PATH > $REPORTS_PATH/phpcbf.txt
+}
+
+open-reports()
+{
+	if [ $OPEN == true ]
+	then
+		# Check if node dependencies are installed
+		if [ ! -d node_modules ]
+		then
+			if [ ! "$(which npm)" ]
+			then
+				echo "Please install npm application to view reports on your browser."
+			else
+				npm install
+			fi
+		fi
+		node index.js
+	fi
 }
 
 # If project directory exists run all analysers
-if [ -d $1 ]
+if [ -d "$TARGET_PATH" ]
 then
 	# Report directory
-	rdir=reports/$(date +%d%m%Y-%H%M%S)
-	mkdir -p $rdir
+	REPORTS_PATH=reports/$(date +%Y-%m-%d_%H%M%S)
+	mkdir -p $REPORTS_PATH
 
 	# Functions
-	pdepend $1 $rdir
-	phpmd $1 $rdir
-	phpcs $1 $rdir
-	phpcpd $1 $rdir
-	phpdcd $1 $rdir
-	phploc $1 $rdir
-#	phpcbf $1$rdir
-else
-	echo The project\'s path \"$1\" doesn\'t exist
+	pdepend $TARGET_PATH $REPORTS_PATH
+	phpmd $TARGET_PATH $REPORTS_PATH
+	phpcs $TARGET_PATH $REPORTS_PATH
+	phpcpd $TARGET_PATH $REPORTS_PATH
+	phpdcd $TARGET_PATH $REPORTS_PATH
+	phploc $TARGET_PATH $REPORTS_PATH
+
+elif [ $OPEN == false ]
+then
+	if [ -z $TARGET_PATH ]
+	then
+		echo "The target path can't be null"
+	else
+		echo "The path $TARGET_PATH doesn't exist"
+	fi
 fi
+
+# Open reports if flag is passed
+open-reports $OPEN

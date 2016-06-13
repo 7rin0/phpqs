@@ -4,15 +4,37 @@ PHP Quality & Security Analyser
 ## Requirements
 - composer
 - php-cli
+- node (list reports directories on browser; option --open)
 
-## Usage
-While the main script is being developed you can expect long reports output in terminal. Easy as clone this repository and run phpqs script with your projects path as argument:
-- git clone https://github.com/7rin0/phpqs.git
-- ./phpqs your/relative/or/absolute/project/path
+## Usage (TL;DR)
+```
+git clone https://github.com/7rin0/phpqs.git
+cd phpqs
+composer install
+npm install
+./phpqs path/to/yout/php/project
+```
 
-## Todo
-- call and isolate one choosen application itself (ex: phpqs pdepend my/projects/path)
-- check, add or remove tests
+## Options
+
+#### Dependency detection
+Each time the script ``` ./phpqs ``` is execute it verifies that composer and node dependencies are already installed and if not it is done automatically
+
+#### View reports through http server:
+run: ``` make open-reports ``` 
+
+run checks with option "--open": ``` ./phpqs path/to/yout/php/project --open```
+
+#### Use and explore a solo script only instead the fullstack
+``` ./bin/{pdepend|phpcbf|phpcpd|phpcs|phpdcd|phploc|phpmd} {options} {arguments} ```
+
+i.e: ``` ./bin/phpcs path/to/yout/php/project --report=xml --report-file=phpcs-report.xml ```
+
+
+## TODO
+- Update phpqs to run phpmetrics
+- Update phpqs to run Security Checker
+- Implement OWASP_Code_Review_Project
 
 ## Inside
 This script combines security and quality 100% fuelled by the following great applications:
@@ -22,5 +44,3 @@ This script combines security and quality 100% fuelled by the following great ap
 - [phpcpd](https://github.com/sebastianbergmann/phpcpd)  *"Copy/Paste Detector (CPD) for PHP code."*
 - [phpdcd](https://github.com/sebastianbergmann/phpdcd)  *"It scans a PHP project for all declared functions and methods and reports those as being "dead code" that are not called at least once."*
 - [phploc](https://github.com/sebastianbergmann/phploc)  *"A tool for quickly measuring the size of a PHP project."*
-
-## You are always welcome to enjoy and contribute :)
