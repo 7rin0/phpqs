@@ -47,7 +47,7 @@ pdepend()
 phpmd()
 {
 	# Execute scan and output reports
-	./bin/phpmd $TARGET_PATH xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile $REPORTS_PATH/phpmd.xml --suffixes php,phtml
+	./bin/phpmd $TARGET_PATH xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile $REPORTS_PATH/phpmd.xml --suffixes php,phtml,module,theme,inc
 }
 
 phpcs()
