@@ -6,7 +6,7 @@ PHP Quality & Security Analyser
 - php-cli
 - node (list reports directories on browser; option --open)
 
-## Usage (TL;DR)
+## Install
 ```
 git clone https://github.com/7rin0/phpqs.git
 cd phpqs
